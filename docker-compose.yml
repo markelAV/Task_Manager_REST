@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  task-manager:
+    container_name: task-manager
+    image: task-manager-app-rest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    #restart: always
+    depends_on:
+      - postrgresql
+  postrgresql:
+    container_name: task-manager-db
+    image: postgres:12.4
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - 5432:5432
+    volumes:
+      - ./testData.sql:/docker-entrypoint-initdb.d/data.sql
