@@ -11,6 +11,5 @@ COPY . /app
 RUN mvn -v
 RUN mvn clean install -DskipTests
 EXPOSE 8080
-ADD ./target/task-manager-0.0.1-SNAPSHOT.jar /developments/
-ENTRYPOINT ["java","-jar","/developments/task-manager-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/task-manager-0.0.1-SNAPSHOT.jar"]
 
